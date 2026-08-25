@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIRVAN '26 | Technical Fest</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#010119;
+    color:rgb(241, 215, 215);
+    overflow-x:hidden;
+}
+
+:root{
+    --lime:#c8ff32;
+    --purple:#8b5cf6;
+    --pink:#ff3cac;
+    --blue:#20bfff;
+    --orange:#ff8a00;
+    --red:#ff4057;
+    --card:#111116;
+    --border:rgba(255,255,255,.12);
+    --muted:#9b9ba5;
+}
+
+
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:rgba(7,7,10,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:var(--lime);
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#aaa;
+    font-size:13px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--lime);
+}
+
+.register-btn{
+    border:none;
+    padding:11px 21px;
+    border-radius:30px;
+    background:var(--lime);
+    color:#b16969;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.menu{
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+}
+
+
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+
+    padding:130px 7% 70px;
+
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(139,92,246,.28),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(32,191,255,.20),
+            transparent 28%
+        );
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:50px 50px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1000px;
+}
+
+.tag{
+    color:var(--lime);
+    font-size:11px;
+    letter-spacing:4px;
+    font-weight:bold;
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:clamp(80px,16vw,190px);
+    line-height:.78;
+    letter-spacing:-12px;
+    font-weight:900;
+}
+
+.hero h1 span{
+    color:var(--lime);
+}
+
+.hero h2{
+    margin-top:42px;
+    font-size:clamp(24px,4vw,48px);
+    letter-spacing:-2px;
+}
+
+.hero h2 span{
+    color:var(--lime);
+}
+
+.hero-description{
+    max-width:620px;
+    margin:22px auto;
+
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:30px;
+}
+
+.btn{
+    padding:14px 25px;
+    border:none;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--lime);
+    color:#000;
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 40px rgba(200,255,50,.25);
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid var(--border);
+    color:white;
+}
+
+.btn-outline:hover{
+    border-color:var(--lime);
+    color:var(--lime);
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:50px;
+}
+
+.time-box{
+    min-width:85px;
+    padding:15px 10px;
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    background:rgba(255,255,255,.04);
+}
+
+.time-box strong{
+    display:block;
+    color:var(--lime);
+    font-size:27px;
+}
+
+.time-box small{
+    color:#666;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section{
+    padding:120px 7%;
+}
+
+.section-label{
+    color:var(--lime);
+    font-size:11px;
+    letter-spacing:4px;
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:clamp(50px,8vw,100px);
+    line-height:.88;
+    letter-spacing:-6px;
+}
+
+.section-title span{
+    color:var(--lime);
+}
+
+.section-subtitle{
+    color:var(--muted);
+    margin-top:22px;
+    max-width:500px;
+    line-height:1.6;
+}
+
+
+
+.about{
+    background:#0c0c10;
+}
+
+.about-grid{
+    max-width:1200px;
+    margin:70px auto 0;
+
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:50px;
+}
+
+.about-text{
+    font-size:20px;
+    color:#aaa;
+    line-height:1.8;
+}
+
+.about-text p{
+    margin-bottom:20px;
+}
+
+.about-card{
+    padding:40px;
+
+    border:1px solid var(--border);
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1725,
+            #0e0e12
+        );
+}
+
+.about-card small{
+    color:var(--lime);
+    letter-spacing:3px;
+}
+
+.about-card h3{
+    font-size:42px;
+    line-height:1;
+    margin:25px 0;
+}
+
+.about-card hr{
+    border:none;
+    border-top:1px solid var(--border);
+    margin:25px 0;
+}
+
+.about-card p{
+    color:#777;
+}
+
+
+/* =========================
+   OBJECTIVES
+========================= */
+
+.objectives{
+    max-width:1200px;
+    margin:80px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.objective{
+    padding:30px;
+
+    border-top:1px solid var(--border);
+    border-right:1px solid var(--border);
+
+    transition:.3s;
+}
+
+.objective:hover{
+    background:#15151a;
+    transform:translateY(-5px);
+}
+
+.objective-number{
+    color:var(--lime);
+    font-size:12px;
+}
+
+.objective h3{
+    margin:18px 0 10px;
+}
+
+.objective p{
+    color:#777;
+    font-size:14px;
+    line-height:1.6;
+}
+
+
+
+
+.arena{
+    background:#07070a;
+}
+
+.filters{
+    max-width:1200px;
+    margin:55px auto 35px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.filter{
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:#aaa;
+
+    cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+    background:var(--lime);
+    color:#000;
+    border-color:var(--lime);
+}
+
+.events{
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+}
+
+.event{
+    min-height:430px;
+
+    position:relative;
+    overflow:hidden;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    transition:.4s;
+}
+
+.event:hover{
+    transform:translateY(-10px);
+}
+
+.event::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    top:-80px;
+    right:-70px;
+
+    filter:blur(65px);
+
+    opacity:.65;
+}
+
+.event-purple{
+    background:linear-gradient(145deg,#32156d,#101019);
+}
+
+.event-purple::before{
+    background:var(--purple);
+}
+
+.event-red{
+    background:linear-gradient(145deg,#5a101e,#13090d);
+}
+
+.event-red::before{
+    background:var(--red);
+}
+
+.event-blue{
+    background:linear-gradient(145deg,#073b63,#091015);
+}
+
+.event-blue::before{
+    background:var(--blue);
+}
+
+.event-orange{
+    background:linear-gradient(145deg,#63320b,#151008);
+}
+
+.event-orange::before{
+    background:var(--orange);
+}
+
+.event-pink{
+    background:linear-gradient(145deg,#631345,#150a12);
+}
+
+.event-pink::before{
+    background:var(--pink);
+}
+
+.event-number{
+    position:absolute;
+    top:25px;
+    left:30px;
+    color:#ffffff66;
+    font-size:12px;
+}
+
+.event-symbol{
+    position:absolute;
+    top:45px;
+    right:30px;
+    font-size:65px;
+    opacity:.18;
+}
+
+.event-category{
+    position:relative;
+    z-index:2;
+
+    color:var(--lime);
+    font-size:9px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+.event h3{
+    position:relative;
+    z-index:2;
+
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.event p{
+    position:relative;
+    z-index:2;
+
+    color:#aaa;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.event-meta{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    gap:8px;
+    margin:20px 0;
+}
+
+.event-meta span{
+    padding:7px 10px;
+    border-radius:20px;
+
+    background:#0005;
+
+    color:#bbb;
+    font-size:9px;
+}
+
+.event button{
+    position:relative;
+    z-index:2;
+
+    width:max-content;
+
+    padding:10px 17px;
+
+    border:none;
+    border-radius:20px;
+
+    background:white;
+    color:#000;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.event button:hover{
+    background:var(--lime);
+}
+
+
+
+.schedule{
+    background:#101014;
+}
+
+.timeline{
+    max-width:1100px;
+    margin:70px auto 0;
+}
+
+.timeline-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:30px;
+
+    padding:28px 0;
+
+    border-top:1px solid var(--border);
+}
+
+.timeline-row time{
+    color:var(--lime);
+    font-size:24px;
+}
+
+.timeline-row small{
+    color:#666;
+    letter-spacing:2px;
+}
+
+.timeline-row h3{
+    font-size:28px;
+    margin-top:9px;
+}
+
+
+
+.gallery-grid{
+    max-width:1200px;
+    margin:65px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.gallery-item{
+    height:220px;
+    border-radius:20px;
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.gallery-item:hover{
+    transform:scale(.97);
+}
+
+.gallery-item::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        transparent 40%,
+        #000b
+    );
+}
+
+.gallery-item span{
+    position:absolute;
+
+    bottom:18px;
+    left:18px;
+
+    z-index:2;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:#0008;
+
+    font-size:10px;
+}
+
+.gallery1{
+    background:linear-gradient(135deg,#7c3aed,#ec4899);
+}
+
+.gallery2{
+    background:linear-gradient(135deg,#0369a1,#22d3ee);
+}
+
+.gallery3{
+    background:linear-gradient(135deg,#991b1b,#f97316);
+}
+
+.gallery4{
+    background:linear-gradient(135deg,#166534,#a3e635);
+}
+
+.gallery5{
+    background:linear-gradient(135deg,#b45309,#facc15);
+}
+
+.gallery6{
+    background:linear-gradient(135deg,#312e81,#06b6d4);
+}
+
+
+
+
+.cta{
+    text-align:center;
+
+    padding:160px 7%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(200,255,50,.14),
+            transparent 55%
+        );
+}
+
+.cta p{
+    color:var(--lime);
+    font-size:10px;
+    letter-spacing:4px;
+}
+
+.cta h2{
+    font-size:clamp(60px,10vw,130px);
+    line-height:.85;
+    letter-spacing:-7px;
+    margin:30px 0 45px;
+}
+
+.cta h2 span{
+    color:var(--lime);
+}
+
+
+
+footer{
+    padding:45px 7%;
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#666;
+    font-size:12px;
+}
+
+footer strong{
+    color:white;
+}
+
+
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:#000d;
+
+    backdrop-filter:blur(12px);
+
+    z-index:3000;
+}
+
+.modal-box{
+    width:100%;
+    max-width:500px;
+
+    padding:40px;
+
+    background:#111116;
+
+    border:1px solid #c8ff3244;
+
+    border-radius:25px;
+
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:12px;
+
+    background:none;
+    border:none;
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+}
+
+.modal-label{
+    color:var(--lime);
+    letter-spacing:3px;
+    font-size:10px;
+}
+
+.modal-box h2{
+    font-size:48px;
+    line-height:.9;
+    margin:25px 0;
+}
+
+.modal-box h2 span{
+    color:var(--lime);
+}
+
+.modal-description{
+    color:#999;
+    line-height:1.6;
+}
+
+.details{
+    display:grid;
+    gap:10px;
+    margin:25px 0;
+}
+
+.details div{
+    padding:15px;
+
+    border:1px solid var(--border);
+    border-radius:10px;
+}
+
+.details small{
+    display:block;
+    color:#666;
+    margin-bottom:5px;
+}
+
+.details b{
+    font-size:13px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+input,
+select{
+    padding:15px;
+
+    background:#08080b;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    color:white;
+
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--lime);
+}
+
+
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+
+        position:absolute;
+
+        top:72px;
+        left:0;
+
+        width:100%;
+
+        background:#09090c;
+
+        padding:25px;
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .navbar .register-btn{
+        display:none;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .objectives{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .events{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:600px){
+
+    section{
+        padding:90px 5%;
+    }
+
+    .hero h1{
+        font-size:78px;
+        letter-spacing:-7px;
+    }
+
+    .hero h2{
+        font-size:25px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .countdown{
+        gap:4px;
+    }
+
+    .time-box{
+        min-width:65px;
+    }
+
+    .time-box strong{
+        font-size:20px;
+    }
+
+    .section-title{
+        font-size:55px;
+        letter-spacing:-4px;
+    }
+
+    .objectives{
+        grid-template-columns:1fr;
+    }
+
+    .events{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timeline-row{
+        grid-template-columns:70px 1fr;
+    }
+
+    .timeline-row h3{
+        font-size:21px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .modal-box{
+        padding:30px 20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+
+<header class="navbar">
+
+    <div class="logo">
+        NIRVAN<span>'26</span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#arena">ARENA</a>
+        <a href="#schedule">SCHEDULE</a>
+        <a href="#gallery">GALLERY</a>
+
+    </nav>
+
+    <button class="register-btn" onclick="openRegister()">
+        REGISTER
+    </button>
+
+    <div class="menu" onclick="toggleMenu()">
+        ☰
+    </div>
+
+</header>
+
+
+
+<section class="hero" id="home">
+
+    <div class="grid"></div>
+
+    <div class="hero-content">
+
+        <p class="tag">
+            GEHU • TECHNICAL FEST • 2026
+        </p>
+
+        <h1>
+            NIRVAN<span>'26</span>
+        </h1>
+
+        <h2>
+            BUILD. <span>CREATE.</span> CONQUER.
+        </h2>
+
+        <p class="hero-description">
+            Step into a world of technology, creativity,
+            competition and innovation. Discover your arena
+            and make your mark at NIRVAN '26.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#arena"
+               class="btn btn-primary">
+                EXPLORE EVENTS
+            </a>
+
+            <button
+                class="btn btn-outline"
+                onclick="openRegister()">
+                REGISTER NOW
+            </button>
+
+        </div>
+
+
+        <!-- COUNTDOWN -->
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <strong id="days">00</strong>
+                <small>DAYS</small>
+            </div>
+
+            <div class="time-box">
+                <strong id="hours">00</strong>
+                <small>HOURS</small>
+            </div>
+
+            <div class="time-box">
+                <strong id="minutes">00</strong>
+                <small>MINUTES</small>
+            </div>
+
+            <div class="time-box">
+                <strong id="seconds">00</strong>
+                <small>SECONDS</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
+
+    <p class="section-label">
+        01 / ABOUT THE EVENT
+    </p>
+
+    <h2 class="section-title">
+        MORE THAN<br>
+        <span>A FEST.</span>
+    </h2>
+
+    <div class="about-grid">
+
+        <div class="about-text">
+
+            <p>
+                NIRVAN '26 is a college technical fest
+                where students transform ideas into
+                experiences.
+            </p>
+
+            <p>
+                From cybersecurity challenges and
+                hackathons to gaming battles and
+                innovation workshops — there is
+                an arena for everyone.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <small>THE MISSION</small>
+
+            <h3>
+                Turn curiosity
+                into creation.
+            </h3>
+
+            <hr>
+
+            <p>
+                Learn. Compete. Collaborate.
+                Innovate.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- OBJECTIVES -->
+
+    <div class="objectives">
+
+        <div class="objective">
+
+            <span class="objective-number">01</span>
+
+            <h3>
+                CREATE EXCITEMENT
+            </h3>
+
+            <p>
+                Make technology fun,
+                energetic and memorable.
+            </p>
+
+        </div>
+
+
+        <div class="objective">
+
+            <span class="objective-number">02</span>
+
+            <h3>
+                CLARIFY INFORMATION
+            </h3>
+
+            <p>
+                Give visitors clear event
+                details without confusion.
+            </p>
+
+        </div>
+
+
+        <div class="objective">
+
+            <span class="objective-number">03</span>
+
+            <h3>
+                EASY DISCOVERY
+            </h3>
+
+            <p>
+                Find the perfect event
+                quickly and easily.
+            </p>
+
+        </div>
+
+
+        <div class="objective">
+
+            <span class="objective-number">04</span>
+
+            <h3>
+                DRIVE REGISTRATION
+            </h3>
+
+            <p>
+                Turn event discovery
+                into participation.
+            </p>
+
+        </div>
+
+
+        <div class="objective">
+
+            <span class="objective-number">05</span>
+
+            <h3>
+                WORK EVERYWHERE
+            </h3>
+
+            <p>
+                Responsive experience
+                across every device.
+            </p>
+
+        </div>
+
+
+        <div class="objective">
+
+            <span class="objective-number">06</span>
+
+            <h3>
+                SHOW YOUR CRAFT
+            </h3>
+
+            <p>
+                Showcase creativity through
+                a polished digital experience.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EVENT ARENA
+========================= -->
+
+<section class="arena" id="arena">
+
+    <p class="section-label">
+        02 / EVENT ARENA
+    </p>
+
+    <h2 class="section-title">
+        FIND YOUR<br>
+        <span>ARENA.</span>
+    </h2>
+
+    <p class="section-subtitle">
+        Choose your challenge. Explore the event.
+        Build something unforgettable.
+    </p>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            onclick="filterEvents('all',this)">
+            ALL
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterEvents('tech',this)">
+            TECH
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterEvents('cyber',this)">
+            CYBER
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterEvents('gaming',this)">
+            GAMING
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterEvents('innovation',this)">
+            INNOVATION
+        </button>
+
+    </div>
+
+
+    <div class="events">
+
+
+        <!-- HACKATHON -->
+
+        <article
+            class="event event-purple"
+            data-category="tech innovation">
+
+            <span class="event-number">01</span>
+
+            <span class="event-symbol">⌘</span>
+
+            <span class="event-category">
+                INNOVATION
+            </span>
+
+            <h3>Hackathon</h3>
+
+            <p>
+                Build real-world solutions
+                with your team and turn
+                ideas into working products.
+            </p>
+
+            <div class="event-meta">
+
+                <span>2–4 MEMBERS</span>
+                <span>PRIZES</span>
+
+            </div>
+
+            <button onclick="showEvent('Hackathon')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+
+        <!-- CTF -->
+
+        <article
+            class="event event-red"
+            data-category="cyber tech">
+
+            <span class="event-number">02</span>
+
+            <span class="event-symbol">⌁</span>
+
+            <span class="event-category">
+                CYBERSECURITY
+            </span>
+
+            <h3>CTF</h3>
+
+            <p>
+                Crack challenges, discover
+                flags and prove your
+                cybersecurity skills.
+            </p>
+
+            <div class="event-meta">
+
+                <span>SECURITY</span>
+                <span>PRIZES</span>
+
+            </div>
+
+            <button onclick="showEvent('CTF')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+
+        <!-- E SPORTS -->
+
+        <article
+            class="event event-blue"
+            data-category="gaming">
+
+            <span class="event-number">03</span>
+
+            <span class="event-symbol">◈</span>
+
+            <span class="event-category">
+                GAMING
+            </span>
+
+            <h3>E-Sports</h3>
+
+            <p>
+                Strategy, reflexes and
+                teamwork collide in
+                the ultimate battle.
+            </p>
+
+            <div class="event-meta">
+
+                <span>GAMING</span>
+                <span>PRIZES</span>
+
+            </div>
+
+            <button onclick="showEvent('E-Sports')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+
+        <!-- TREASURE -->
+
+        <article
+            class="event event-orange"
+            data-category="innovation">
+
+            <span class="event-number">04</span>
+
+            <span class="event-symbol">◇</span>
+
+            <span class="event-category">
+                ADVENTURE
+            </span>
+
+            <h3>Treasure Hunt</h3>
+
+            <p>
+                Solve clues, follow the trail
+                and discover the hidden prize.
+            </p>
+
+            <div class="event-meta">
+
+                <span>PUZZLES</span>
+                <span>TEAMWORK</span>
+
+            </div>
+
+            <button onclick="showEvent('Treasure Hunt')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+
+        <!-- AI -->
+
+        <article
+            class="event event-pink"
+            data-category="tech innovation">
+
+            <span class="event-number">05</span>
+
+            <span class="event-symbol">✦</span>
+
+            <span class="event-category">
+                ARTIFICIAL INTELLIGENCE
+            </span>
+
+            <h3>AI Arena</h3>
+
+            <p>
+                Explore artificial intelligence
+                and build intelligent solutions.
+            </p>
+
+            <div class="event-meta">
+
+                <span>AI</span>
+                <span>INNOVATION</span>
+
+            </div>
+
+            <button onclick="showEvent('AI Arena')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+
+        <!-- WORKSHOP -->
+
+        <article
+            class="event event-purple"
+            data-category="tech">
+
+            <span class="event-number">06</span>
+
+            <span class="event-symbol">✦</span>
+
+            <span class="event-category">
+                LEARNING
+            </span>
+
+            <h3>Workshop</h3>
+
+            <p>
+                Learn from experts through
+                practical hands-on sessions.
+            </p>
+
+            <div class="event-meta">
+
+                <span>LEARN</span>
+                <span>HANDS-ON</span>
+
+            </div>
+
+            <button onclick="showEvent('Workshop')">
+                EXPLORE →
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCHEDULE
+========================= -->
+
+<section class="schedule" id="schedule">
+
+    <p class="section-label">
+        03 / SCHEDULE
+    </p>
+
+    <h2 class="section-title">
+        TWO DAYS.<br>
+        <span>ONE EXPERIENCE.</span>
+    </h2>
+
+
+    <div class="timeline">
+
+        <div class="timeline-row">
+
+            <time>09:00</time>
+
+            <div>
+                <small>DAY 01 • MAIN AUDITORIUM</small>
+                <h3>Opening Ceremony</h3>
+            </div>
+
+        </div>
+
+
+        <div class="timeline-row">
+
+            <time>10:00</time>
+
+            <div>
+                <small>DAY 01 • COMPUTER LAB</small>
+                <h3>CTF Begins</h3>
+            </div>
+
+        </div>
+
+
+        <div class="timeline-row">
+
+            <time>13:00</time>
+
+            <div>
+                <small>DAY 01 • INNOVATION LAB</small>
+                <h3>Hackathon</h3>
+            </div>
+
+        </div>
+
+
+        <div class="timeline-row">
+
+            <time>10:00</time>
+
+            <div>
+                <small>DAY 02 • GAMING ARENA</small>
+                <h3>E-Sports Championship</h3>
+            </div>
+
+        </div>
+
+
+        <div class="timeline-row">
+
+            <time>16:00</time>
+
+            <div>
+                <small>DAY 02 • MAIN STAGE</small>
+                <h3>Prize Distribution</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section id="gallery">
+
+    <p class="section-label">
+        04 / GALLERY
+    </p>
+
+    <h2 class="section-title">
+        FEEL THE<br>
+        <span>ENERGY.</span>
+    </h2>
+
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item gallery1">
+            <span>NIRVAN / 01</span>
+        </div>
+
+        <div class="gallery-item gallery2">
+            <span>NIRVAN / 02</span>
+        </div>
+
+        <div class="gallery-item gallery3">
+            <span>NIRVAN / 03</span>
+        </div>
+
+        <div class="gallery-item gallery4">
+            <span>NIRVAN / 04</span>
+        </div>
+
+        <div class="gallery-item gallery5">
+            <span>NIRVAN / 05</span>
+        </div>
+
+        <div class="gallery-item gallery6">
+            <span>NIRVAN / 06</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <p>
+        YOUR CHALLENGE IS WAITING
+    </p>
+
+    <h2>
+        READY TO<br>
+        <span>ENTER?</span>
+    </h2>
+
+    <button
+        class="btn btn-primary"
+        onclick="openRegister()">
+
+        REGISTER FOR NIRVAN '26 →
+
+    </button>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>
+        NIRVAN '26
+    </strong>
+
+    <span>
+        WHERE IDEAS BECOME INNOVATION.
+    </span>
+
+    <span>
+        GEHU • 2026
+    </span>
+
+</footer>
+
+
+<!-- =========================
+     EVENT MODAL
+========================= -->
+
+<div class="modal" id="eventModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('eventModal')">
+            ×
+        </button>
+
+        <p class="modal-label">
+            EVENT ARENA
+        </p>
+
+        <h2 id="eventTitle">
+            EVENT
+        </h2>
+
+        <p
+            class="modal-description"
+            id="eventDescription">
+        </p>
+
+
+        <div class="details">
+
+            <div>
+                <small>DATE</small>
+                <b>12–13 OCTOBER 2026</b>
+            </div>
+
+            <div>
+                <small>VENUE</small>
+                <b>GEHU CAMPUS</b>
+            </div>
+
+            <div>
+                <small>STATUS</small>
+                <b>REGISTRATION OPEN</b>
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="
+                closeModal('eventModal');
+                openRegister();
+            ">
+
+            REGISTER NOW →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     REGISTER MODAL
+========================= -->
+
+<div class="modal" id="registerModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('registerModal')">
+            ×
+        </button>
+
+        <p class="modal-label">
+            NIRVAN '26
+        </p>
+
+        <h2>
+            JOIN THE<br>
+            <span>ARENA.</span>
+        </h2>
+
+
+        <form id="registerForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Full Name"
+                required>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required>
+
+            <select id="eventSelect" required>
+
+                <option value="">
+                    Select Event
+                </option>
+
+                <option>Hackathon</option>
+                <option>CTF</option>
+                <option>E-Sports</option>
+                <option>Treasure Hunt</option>
+                <option>AI Arena</option>
+                <option>Workshop</option>
+
+            </select>
+
+            <button
+                class="btn btn-primary"
+                type="submit">
+
+                SUBMIT REGISTRATION →
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("show");
+
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const festDate =
+    new Date("October 12, 2026 10:00:00").getTime();
+
+
+function updateCountdown(){
+
+    const now =
+        new Date().getTime();
+
+    const difference =
+        festDate - now;
+
+
+    if(difference <= 0){
+
+        document.getElementById("days").innerText="00";
+        document.getElementById("hours").innerText="00";
+        document.getElementById("minutes").innerText="00";
+        document.getElementById("seconds").innerText="00";
+
+        return;
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (1000*60*60*24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (difference /
+            (1000*60*60)) % 24
+        );
+
+
+    const minutes =
+        Math.floor(
+            (difference /
+            (1000*60)) % 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            (difference/1000) % 60
+        );
+
+
+    document.getElementById("days")
+        .innerText =
+        String(days).padStart(2,"0");
+
+    document.getElementById("hours")
+        .innerText =
+        String(hours).padStart(2,"0");
+
+    document.getElementById("minutes")
+        .innerText =
+        String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds")
+        .innerText =
+        String(seconds).padStart(2,"0");
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+
+/* =========================
+   EVENT FILTER
+========================= */
+
+function filterEvents(category,button){
+
+    const filters =
+        document.querySelectorAll(".filter");
+
+    filters.forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+
+    const events =
+        document.querySelectorAll(".event");
+
+
+    events.forEach(function(event){
+
+        const categories =
+            event.dataset.category;
+
+
+        if(
+            category === "all" ||
+            categories.includes(category)
+        ){
+
+            event.style.display="flex";
+
+        }
+        else{
+
+            event.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   EVENT INFORMATION
+========================= */
+
+const eventData = {
+
+    "Hackathon":
+        "Build real-world solutions with your team. Create, prototype and present an innovative idea.",
+
+    "CTF":
+        "Test your cybersecurity skills through challenges involving cryptography, web security and digital investigation.",
+
+    "E-Sports":
+        "Compete in the gaming arena using strategy, reflexes and teamwork.",
+
+    "Treasure Hunt":
+        "Solve clues, discover hidden locations and work with your team to reach the final treasure.",
+
+    "AI Arena":
+        "Explore artificial intelligence and build intelligent solutions using creativity and technology.",
+
+    "Workshop":
+        "Learn practical skills from experts through interactive and hands-on technical sessions."
+
+};
+
+
+function showEvent(name){
+
+    document.getElementById("eventTitle")
+        .innerText=name;
+
+    document.getElementById("eventDescription")
+        .innerText=eventData[name];
+
+    document.getElementById("eventModal")
+        .style.display="flex";
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function openRegister(){
+
+    document.getElementById("registerModal")
+        .style.display="flex";
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+/* =========================
+   CLOSE MODALS
+========================= */
+
+function closeModal(id){
+
+    document.getElementById(id)
+        .style.display="none";
+
+    document.body.style.overflow="auto";
+
+}
+
+
+/* =========================
+   FORM SUBMISSION
+========================= */
+
+document
+    .getElementById("registerForm")
+    .addEventListener(
+        "submit",
+        function(event){
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("name")
+                .value;
+
+            const selectedEvent =
+                document.getElementById("eventSelect")
+                .value;
+
+
+            alert(
+                "🎉 REGISTRATION SUCCESSFUL!\n\n" +
+                "Welcome, " + name + "!\n" +
+                "Event: " + selectedEvent
+            );
+
+
+            this.reset();
+
+            closeModal("registerModal");
+
+        }
+    );
+
+
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
+
+window.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList.contains("modal")
+        ){
+
+            event.target.style.display="none";
+
+            document.body.style.overflow="auto";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key==="Escape"){
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(function(modal){
+
+                    modal.style.display="none";
+
+                });
+
+            document.body.style.overflow="auto";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
